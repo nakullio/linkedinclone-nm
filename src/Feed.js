@@ -14,6 +14,9 @@ function Feed() {
 
                     </form>
                 </div>
+                <div className="feed__inputOptions">
+                    
+                </div>
             </div>
         </div>
     )
