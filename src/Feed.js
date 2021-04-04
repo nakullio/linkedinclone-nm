@@ -21,7 +21,7 @@ function Feed() {
     useEffect(()=> {
         // onSnapshot will give us realtime connection to the database
         // this setup will help us to make realtime listener for update from database cloud
-        db.collection("posts").onSnapshot(snapshot => (
+        db.collection("posts").orderBy('timestamp', 'desc').onSnapshot(snapshot => (
             setPosts(snapshot.docs.map(doc => (
                 {
                     id: doc.id,
@@ -29,14 +29,13 @@ function Feed() {
                 }
             )))
         ))
-
     }, [])
 
     const sendPost = e => {
         e.preventDefault();
 
         db.collection('posts').add({
-            name: 'Nakula',
+            name: 'Nakula Marvellio',
             description: 'this is a test',
             message: input,
             photoUrl: '',
@@ -66,8 +65,6 @@ function Feed() {
                     <InputOption Icon={Subscriptionsicon} title='Video' color="#e7a33e"/>
                     <InputOption Icon={EventNoteIcon} title='Event' color="#C0CBC0"/>
                     <InputOption Icon={CalendarViewDayIcon} title='Write article' color="#7fc15e"/>
-
-
                 </div>
             </div>
 
