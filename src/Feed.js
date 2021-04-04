@@ -40,8 +40,13 @@ function Feed() {
             description: 'this is a test',
             message: input,
             photoUrl: '',
-            timestamp: 
-        })
+            // this timestamp will follow based on region we are at, different place will have different time records
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+
+        });
+
+        // clear the text dialog
+        setInput('');
     }
 
 
@@ -67,10 +72,19 @@ function Feed() {
             </div>
 
             {/* Posts */}
-            {posts.map((post)=> (
-                <Post />
+            {posts.map(({ id, data: {name, description, message, photoUrl} })=> (
+                <Post 
+                // key is very important when you render a list
+                // because, without key, react will rerender the entire list
+                // so with the key, react only render the new item on the list
+                // and this way its make reactapp more light
+                key={id}
+                name={name}
+                description={description}
+                message={message}
+                photoUrl={photoUrl}
+                />
             ))}
-            <Post name="Nakula Marvellio" description="This is a test" message="wow this is works"/>
         </div>
     )
 }
