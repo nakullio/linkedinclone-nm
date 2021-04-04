@@ -23,3 +23,8 @@
   /* anywhere means, when the text goes exceed the container,then will wrap anywhere the border meets */
   overflow-wrap: anywhere;
 }
+
+.post__button {
+  display: flex;
+  justify-content: space-evenly;
+}
